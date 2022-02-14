@@ -4,7 +4,7 @@
   elements:
   - title: Job Stages
     name: Job Stages
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: looker_grid
     fields: [jobs_by_organization_raw__job_stages.name, jobs_by_organization_raw__job_stages.total_slot_ms,
@@ -47,7 +47,7 @@
     height: 8
   - title: Bytes Spilled to Disk
     name: Bytes Spilled to Disk
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.average_shuffle_output_bytes_spilled]
@@ -72,7 +72,7 @@
     height: 3
   - title: Total GB Processed
     name: Total GB Processed
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.total_gb_processed]
@@ -97,7 +97,7 @@
     height: 3
   - title: User Email
     name: User Email
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.user_email]
@@ -128,7 +128,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     listens_to_filters: []
     field: jobs_by_organization_raw.job_id
