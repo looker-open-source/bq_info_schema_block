@@ -1,14 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/columns.view.lkml"
-
-
 view: columns {
-  extends: [columns_config]
-}
-
-###################################################
-
-view: columns_core {
-  extension: required
   derived_table: {
     sql: SELECT * FROM `@{REGION}.INFORMATION_SCHEMA.COLUMNS` ;;
   }

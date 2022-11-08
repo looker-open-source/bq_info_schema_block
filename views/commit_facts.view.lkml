@@ -1,14 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/commit_facts.view.lkml"
-
-
 view: commit_facts {
-  extends: [commit_facts_config]
-}
-
-###################################################
-
-view: commit_facts_core {
-  extension: required
   derived_table: {
     sql: WITH t AS (SELECT TIMESTAMP_TRUNC(change_timestamp,MINUTE) as change_timestamp, project_id, capacity_commitment_id,
         IF(commitment_plan != 'FLEX', 0, IF(action IN ('UPDATE', 'CREATE'), slot_count, slot_count * -1)) as flex_change,

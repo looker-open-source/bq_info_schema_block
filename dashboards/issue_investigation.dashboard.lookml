@@ -4,7 +4,7 @@
   elements:
   - title: GB Processed
     name: GB Processed
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.total_gb_processed, jobs_by_organization_raw__job_stages.total_shuffle_output_gibibytes_spilled]
@@ -67,7 +67,7 @@
     height: 4
   - title: New Tile
     name: New Tile
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.count_cached_queries, jobs_by_organization_raw.percent_of_queries_cached]
@@ -136,7 +136,7 @@
     height: 2
   - title: Slots vs Commitments
     name: Slots vs Commitments
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: timeline_with_commits
     type: looker_line
     fields: [timeline_with_commits.period_start_minute5, timeline_with_commits.total_slot_5minutes,
@@ -188,7 +188,7 @@
     height: 8
   - title: Slots Used by Project
     name: Slots Used by Project
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_timeline_by_organization
     type: looker_area
     fields: [jobs_timeline_by_organization.period_start_minute5, jobs_timeline_by_organization.total_slot_5minutes,
@@ -238,7 +238,7 @@
     height: 6
   - title: Query Concurrency
     name: Query Concurrency
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: concurrency_per_second
     type: looker_line
     fields: [concurrency_per_second.timestamp_minute5, concurrency_per_second.avg_running,
@@ -287,7 +287,7 @@
     default_value: 6 hours
     allow_multiple_values: true
     required: false
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_timeline_by_organization
     listens_to_filters: []
     field: jobs_timeline_by_organization.date_filter
@@ -297,7 +297,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: block_bq_info_schema
+    model: block_bq_info_schema_v2
     explore: jobs_timeline_by_organization
     listens_to_filters: []
     field: jobs_timeline_by_organization.project_id

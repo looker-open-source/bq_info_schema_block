@@ -1,16 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/jobs_by_organization_raw.view.lkml"
-
-
 view: jobs_by_organization_raw {
-  extends: [jobs_by_organization_raw_config]
-}
-
-###################################################
-
-
-
-view: jobs_by_organization_raw_core {
-  extension: required
   derived_table: {
     sql: SELECT *
       from `@{REGION}.INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION`
@@ -169,7 +157,7 @@ view: jobs_by_organization_raw_core {
     sql: ${TABLE}.job_id ;;
     link: {
       label: "Job Lookup Dashboard"
-      url: "/dashboards/block_bq_info_schema::job_lookup_dashboard?Job%20Id={{ value }}"
+      url: "/dashboards/block_bq_info_schema_v2::job_lookup_dashboard?Job%20Id={{ value }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {
@@ -320,6 +308,21 @@ view: jobs_by_organization_raw_core {
     sql: ${TABLE}.labels ;;
   }
 
+  dimension: looker_instance_slug {
+    type: string
+    sql: (SELECT value FROM UNNEST(${TABLE}.labels) as label WHERE label.key = 'looker-context-instance_slug') as instance_slug ;;
+  }
+
+  dimension: looker_user_id {
+    type: string
+    sql: (SELECT value FROM UNNEST(${TABLE}.labels) as label WHERE label.key = 'looker-context-user_id') ;;
+  }
+
+  dimension: looker_history_id {
+    type: string
+    sql: (SELECT value from UNNEST(${TABLE}.label) as label where label.key = 'looker-context-history_id') ;;
+  }
+
   dimension: timeline {
     hidden: yes
     type: string
@@ -400,6 +403,30 @@ view: jobs_by_organization_raw_core {
     type:  sum
     value_format_name: decimal_2
     sql: ${total_estimated_bytes_billed} / POW(2, 40) ;;
+  }
+
+  dimension: total_bytes_billed {
+    type: number
+    label: "Bytes Billed"
+    sql: ${TABLE}.total_bytes_billed ;;
+  }
+
+  measure: total_mbytes_billed {
+    type: sum
+    label: "Total MBytes Billed"
+    sql: ${total_bytes_billed} / (1000000) ;;
+  }
+
+  measure: total_gbytes_billed {
+    type: sum
+    label: "Total GiB Billed"
+    sql: ${total_bytes_billed} / (1000000000) ;;
+  }
+
+  measure: total_tb_billed {
+    type: number
+    label: "Total TB Billed"
+    sql: ${total_bytes_billed} / (1000000000000) ;;
   }
 
 ##### Model Creation costs more per GB than other Statement Types #######

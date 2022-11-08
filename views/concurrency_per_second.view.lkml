@@ -1,14 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/concurrency_per_second.view.lkml"
-
-
 view: concurrency_per_second {
-  extends: [concurrency_per_second_config]
-}
-
-###################################################
-
-view: concurrency_per_second_core {
-  extension: required
   derived_table: {
     sql: WITH seconds as (
           SELECT TIMESTAMP_TRUNC(timestamp, SECOND) timestamp, FROM (SELECT GENERATE_TIMESTAMP_ARRAY(TIMESTAMP_SUB({% date_end jobs_timeline_by_organization.date_filter %}, INTERVAL 2 DAY), {% date_end jobs_timeline_by_organization.date_filter %}, INTERVAL 1 SECOND) timestamps), UNNEST(timestamps) timestamp

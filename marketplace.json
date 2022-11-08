@@ -7,9 +7,6 @@
   },
 
     "constants": {
-      "CONFIG_PROJECT_NAME": {
-        "label": "Config Project Name"
-      },
       "CONNECTION_NAME": {
         "label": "Connection Name",
         "value_constraint": "connection"
@@ -25,16 +22,8 @@
     },
     "models": [
       {
-        "name": "block_bq_info_schema",
+        "name": "block_bq_info_schema_v2",
         "connection_constant": "CONNECTION_NAME"
-      }
-    ],
-    "auxiliary_projects": [
-      {
-        "git_uri": "git://github.com/looker/bq_info_schema_block_config.git",
-        "git_ref": "17efa4cfc514ddbbc10357e29a7d81b924720018",
-        "label": "BQ Info Schema Config",
-        "constant_name": "CONFIG_PROJECT_NAME"
       }
     ]
 }

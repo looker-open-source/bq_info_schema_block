@@ -1,14 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/tables.view.lkml"
-
-
 view: tables {
-  extends: [tables_config]
-}
-
-###################################################
-
-view: tables_core {
-  extension: required
   derived_table: {
     sql: SELECT * FROM `@{REGION}.INFORMATION_SCHEMA.TABLES` ;;
   }

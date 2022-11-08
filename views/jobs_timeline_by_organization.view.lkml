@@ -1,14 +1,5 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/jobs_timeline_by_organization.view.lkml"
 
 view: jobs_timeline_by_organization {
-  extends: [jobs_timeline_by_organization_config]
-}
-
-
-
-view: jobs_timeline_by_organization_core {
-  extension: required
-
   sql_table_name: `@{REGION}.INFORMATION_SCHEMA.JOBS_TIMELINE_BY_ORGANIZATION`
     ;;
 
@@ -240,7 +231,7 @@ view: jobs_timeline_by_organization_core {
     sql: ${TABLE}.job_id ;;
     link: {
       label: "Job Lookup Dashboard"
-      url: "/dashboards/block_bq_info_schema::job_lookup_dashboard?Job%20Id={{ value }}"
+      url: "/dashboards/block_bq_info_schema_v2::job_lookup_dashboard?Job%20Id={{ value }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {
